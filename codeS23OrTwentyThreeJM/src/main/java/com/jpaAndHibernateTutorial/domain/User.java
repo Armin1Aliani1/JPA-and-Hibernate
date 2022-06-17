@@ -3,8 +3,10 @@ package com.jpaAndHibernateTutorial.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+// Annotation (@Entity) is used to build the table in the database
 @Entity
 public class User {
+    // Annotation (@Id) is used to create the primary key in the table
     @Id
     private Long id;
     private String firstName;
