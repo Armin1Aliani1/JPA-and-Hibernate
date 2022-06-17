@@ -1,13 +1,23 @@
 package com.jpaAndHibernateTutorial.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 // Annotation (@Entity) is used to build the table in the database
+// We use annotation (@Table) to rename a table
 @Entity
+@Table(name = User.TABLE_NAME)
+//@Table(name = "user_table")
 public class User {
     // Annotation (@Id) is used to create the primary key in the table
+    // We use annotation (@GeneratedValue) to generate id automatically
+
+    public static final String TABLE_NAME = "table_user"; // Use for native query
+
     @Id
+    @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
