@@ -1,18 +1,40 @@
 package com.jpaAndHibernateTutorial.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // Annotation (@Entity) is used to build the table in the database
+ /*We use annotation(@Table) to define the name of the new table we want to create for the first time,
+ or we can use annotation(@Table) to create another new table.*/
 @Entity
+@Table(name = User.TABLE_NAME)
+//@Table(name = "user_table")
 public class User {
     // Annotation (@Id) is used to create the primary key in the table
+    // We use annotation (@GeneratedValue) to generate id automatically
+
+    public static final String TABLE_NAME = "table_user"; // Use for native query
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String IS_ACTIVE = "is_active";
+
     @Id
+    @GeneratedValue
     private Long id;
+    // We use annotation (@Column(name = NAME_COLUMN,columnDefinition = "Data type")) for rename a column and custom data type a column
+    @Column(name = FIRST_NAME)
     private String firstName;
+    @Column(name = LAST_NAME)
     private String lastName;
+    @Column(name = USERNAME,unique = true)
     private String username;
+    @Column(name = PASSWORD,columnDefinition = "varchar(2048)")
+//    @Column(name = PASSWORD,length = 1024)
     private String password;
+
+    @Column(name = IS_ACTIVE,columnDefinition = "TINYINT(1)")
+    private Boolean isActive;
 
     public User() {
     }
@@ -64,6 +86,15 @@ public class User {
         this.password = password;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isActive=" + isActive +
+                '}';
+    }
 }
