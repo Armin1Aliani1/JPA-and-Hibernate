@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/jpa-tutorial</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="jpa-tutorial@localhost [2]" uuid="170492cd-5cdb-4a22-8acf-d4d25d94ce6a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jpa-tutorial</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
