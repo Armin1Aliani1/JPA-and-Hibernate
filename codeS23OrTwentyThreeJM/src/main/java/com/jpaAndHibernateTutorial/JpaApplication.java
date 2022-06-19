@@ -13,13 +13,22 @@ public class JpaApplication {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = HibernateUtil.getEntityManagerFactory();
 
+        // Build and get entityManager with entityManagerFactory
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Build and get entityManager with entityManagerFactory
+
+        // This command is used to create a query
         TypedQuery<User> query = entityManager.createQuery("SELECT u from User u", User.class);
+        // This command is used to create a query
+        // Results a list of data
         List<User> userList = query.getResultList();
+        // Results a list of data
         if (userList == null || userList.isEmpty()) {
             System.out.println("Empty users");
         } else {
+            // Do print for each user
             userList.forEach(user -> System.out.println(user));
+            // Do print for each user
         }
 
         EntityTransaction transaction = entityManager.getTransaction();
