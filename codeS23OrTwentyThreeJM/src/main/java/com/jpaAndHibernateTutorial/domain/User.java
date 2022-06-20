@@ -1,6 +1,8 @@
 package com.jpaAndHibernateTutorial.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 // Annotation (@Entity) is used to build the table in the database
  /*We use annotation(@Table) to define the name of the new table we want to create for the first time,
@@ -27,14 +29,22 @@ public class User {
     private String firstName;
     @Column(name = LAST_NAME)
     private String lastName;
-    @Column(name = USERNAME,unique = true)
+    @Column(name = USERNAME, unique = true)
     private String username;
-    @Column(name = PASSWORD,columnDefinition = "varchar(2048)")
+    @Column(name = PASSWORD, columnDefinition = "varchar(2048)")
 //    @Column(name = PASSWORD,length = 1024)
     private String password;
 
-    @Column(name = IS_ACTIVE,columnDefinition = "TINYINT(1)")
+    @Column(name = IS_ACTIVE, columnDefinition = "TINYINT(1)")
     private Boolean isActive;
+
+    // @OneToOne : Annotate the relationship OneToOne
+    // One user have one wallet
+    @OneToOne
+    private Wallet wallet;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Tag> tags = new HashSet<>();
 
     public User() {
     }
@@ -84,6 +94,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
