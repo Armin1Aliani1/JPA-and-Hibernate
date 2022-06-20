@@ -18,6 +18,7 @@ public class Address {
 
     // To establish a two-way relationship between two entities, we use (@ManyToOne Or ...) annotation for each of them.
     // Many Address To One City
+    // Annotation (@ManyToOne) does not have mappedBy
     @ManyToOne
     private City city;
 
