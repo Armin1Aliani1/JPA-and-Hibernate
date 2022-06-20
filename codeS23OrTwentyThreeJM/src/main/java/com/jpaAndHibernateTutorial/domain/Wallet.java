@@ -1,9 +1,6 @@
 package com.jpaAndHibernateTutorial.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = Wallet.TABLE_NAME)
@@ -15,6 +12,13 @@ public class Wallet {
     private Long totalAmount;
     private Long cashAmount;
     private Long creditAmount;
+
+    // @OneToOne(mappedBy = "wallet") : This relationship is implemented by wallet
+    // mappedBy is used for those who do not have a relationship
+    // This relationship was once mappedBy wallet
+    @OneToOne(mappedBy = "wallet")
+    private User user;
+    // @OneToOne(mappedBy = "wallet") : This relationship is implemented by wallet
 
     public Wallet() {
     }
@@ -56,6 +60,14 @@ public class Wallet {
 
     public void setCreditAmount(Long creditAmount) {
         this.creditAmount = creditAmount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

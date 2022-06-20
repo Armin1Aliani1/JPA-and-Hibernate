@@ -27,14 +27,19 @@ public class User {
     private String firstName;
     @Column(name = LAST_NAME)
     private String lastName;
-    @Column(name = USERNAME,unique = true)
+    @Column(name = USERNAME, unique = true)
     private String username;
-    @Column(name = PASSWORD,columnDefinition = "varchar(2048)")
+    @Column(name = PASSWORD, columnDefinition = "varchar(2048)")
 //    @Column(name = PASSWORD,length = 1024)
     private String password;
 
-    @Column(name = IS_ACTIVE,columnDefinition = "TINYINT(1)")
+    @Column(name = IS_ACTIVE, columnDefinition = "TINYINT(1)")
     private Boolean isActive;
+
+    // @OneToOne : Annotate the relationship OneToOne
+    // One user have one wallet
+    @OneToOne
+    private Wallet wallet;
 
     public User() {
     }
@@ -84,6 +89,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     @Override
