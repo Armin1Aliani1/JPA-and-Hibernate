@@ -1,9 +1,8 @@
 package com.jpaAndHibernateTutorial.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = Tag.TABLE_NAME)
@@ -14,6 +13,15 @@ public class Tag {
     @GeneratedValue
     private Long id;
     private String name;
+
+    // @JoinTable : The following commands can be used to rename the table and to rename the columns
+    @ManyToMany
+    @JoinTable(
+            name = "tag_user_join_table",
+            joinColumns = @JoinColumn(name = "my_t_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "my_u_id")
+    )
+    private Set<User> users = new HashSet<>();
 
     public Tag() {
     }

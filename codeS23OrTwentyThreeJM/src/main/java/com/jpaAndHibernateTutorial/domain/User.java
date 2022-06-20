@@ -43,7 +43,7 @@ public class User {
     @OneToOne
     private Wallet wallet;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
     private Set<Tag> tags = new HashSet<>();
 
     public User() {
