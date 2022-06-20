@@ -17,6 +17,12 @@ public class JpaApplication {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         // Build and get entityManager with entityManagerFactory
 
+//        doFirstExample(entityManager);
+
+        System.out.println("end");
+    }
+
+    private static void doFirstExample(EntityManager entityManager) {
         // This command is used to create a query
         TypedQuery<User> query = entityManager.createQuery("SELECT u from User u", User.class);
         // This command is used to create a query
@@ -51,7 +57,5 @@ public class JpaApplication {
 
         userList = query.getResultList();
         System.out.println(userList);
-
-        System.out.println("end");
     }
 }
