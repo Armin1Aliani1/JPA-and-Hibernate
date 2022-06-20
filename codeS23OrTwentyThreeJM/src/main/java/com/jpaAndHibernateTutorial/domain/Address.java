@@ -1,9 +1,6 @@
 package com.jpaAndHibernateTutorial.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -19,9 +16,10 @@ public class Address {
     public Address() {
     }
 
+    // To establish a two-way relationship between two entities, we use (@ManyToOne Or ...) annotation for each of them.
     // Many Address To One City
-    /*@ManyToOne
-    private City city;*/
+    @ManyToOne
+    private City city;
 
     public Long getId() {
         return id;
@@ -47,11 +45,11 @@ public class Address {
         this.address = address;
     }
 
-    /*public City getCity() {
+    public City getCity() {
         return city;
     }
 
     public void setCity(City city) {
         this.city = city;
-    }*/
+    }
 }
