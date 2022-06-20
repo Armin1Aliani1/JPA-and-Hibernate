@@ -1,6 +1,8 @@
 package com.jpaAndHibernateTutorial.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 // Annotation (@Entity) is used to build the table in the database
  /*We use annotation(@Table) to define the name of the new table we want to create for the first time,
@@ -40,6 +42,9 @@ public class User {
     // One user have one wallet
     @OneToOne
     private Wallet wallet;
+
+    @ManyToMany
+    private Set<Tag> tags = new HashSet<>();
 
     public User() {
     }
@@ -105,6 +110,14 @@ public class User {
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
