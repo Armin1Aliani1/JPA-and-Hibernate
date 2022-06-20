@@ -20,6 +20,8 @@ public class JpaApplication {
         // This command is used to create a query
         TypedQuery<User> query = entityManager.createQuery("SELECT u from User u", User.class);
         // This command is used to create a query
+
+        // Show user
         // Results a list of data
         List<User> userList = query.getResultList();
         // Results a list of data
@@ -30,15 +32,22 @@ public class JpaApplication {
             userList.forEach(user -> System.out.println(user));
             // Do print for each user
         }
+        // Show user
 
         EntityTransaction transaction = entityManager.getTransaction();
+        // transaction start
         transaction.begin();
+        // transaction start
 
         User user = new User("Armin", "Aliani", "ArminA", "123456789");
+        // Is persist for save user
         entityManager.persist(user);
+        // Is persist for save user
         System.out.println(user);
 
+        // Record
         transaction.commit();
+        // Record
 
         userList = query.getResultList();
         System.out.println(userList);
